@@ -86,7 +86,7 @@ fun GameScreen() {
 
             Spacer(modifier = Modifier.height(44.dp))
 
-            GuessedLettersBox(guessed = guessed)
+            GuessedLettersBox(guessed = guessed, secretWord = secretWord)
 
             if (win || lose) {
                 AlertDialog(
