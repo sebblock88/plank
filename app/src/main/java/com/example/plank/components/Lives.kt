@@ -1,5 +1,6 @@
 package com.example.plank.components
 
+import android.R.attr.padding
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -15,7 +16,7 @@ import androidx.compose.ui.text.style.LineHeightStyle
 import androidx.compose.ui.unit.sp
 
 @Composable
-fun Lives(livesRemaining: Int, maxLives: Int) {
+fun Lives(livesRemaining: Int, maxLives: Int, incorrectGuesses: Int) {
     Row(modifier = Modifier.fillMaxWidth(),
         horizontalArrangement = Arrangement.SpaceBetween) {
         Text(
@@ -29,9 +30,18 @@ fun Lives(livesRemaining: Int, maxLives: Int) {
                 fontSize = 20.sp
             )
             Text(
-                text = "💀".repeat(livesRemaining) + "☠️".repeat(maxLives - livesRemaining),
+                text = "☠️".repeat(livesRemaining) + "🪦️".repeat(maxLives - livesRemaining),
                 fontSize = 20.sp
             )
+//            Text(
+//                text = "Incorrect guesses",
+//                fontSize = 20.sp
+//            )
+//            Text(
+//                text = "🪦".repeat(incorrectGuesses),
+//                fontSize = 20.sp
+//            )
         }
     }
 }
+
