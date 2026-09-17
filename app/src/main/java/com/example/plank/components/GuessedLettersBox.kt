@@ -20,8 +20,8 @@ fun GuessedLettersBox(guessed: Set<Char>) {
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.Center) {
             Text(
-                "Letters guessed",
-                fontSize = 28.sp
+                "Letters guessed:",
+                fontSize = 22.sp
             )
         }
 
@@ -30,7 +30,7 @@ fun GuessedLettersBox(guessed: Set<Char>) {
         Box() {
                 Text(
                     guessed.joinToString("  "),
-                    fontSize = 48.sp
+                    fontSize = 36.sp
                 )
     }
 }

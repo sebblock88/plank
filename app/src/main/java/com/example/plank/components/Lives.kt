@@ -16,31 +16,24 @@ import androidx.compose.ui.text.style.LineHeightStyle
 import androidx.compose.ui.unit.sp
 
 @Composable
-fun Lives(livesRemaining: Int, maxLives: Int, incorrectGuesses: Int) {
+fun Lives(livesRemaining: Int, maxLives: Int) {
     Row(modifier = Modifier.fillMaxWidth(),
         horizontalArrangement = Arrangement.SpaceBetween) {
         Text(
-            "Plank",
+            "Plank 🏴‍☠️",
             fontSize = 20.sp,
             fontWeight = FontWeight.Bold
         )
         Column(horizontalAlignment = Alignment.End) {
             Text(
-                "Lives remaining",
-                fontSize = 20.sp
+                "Lives remaining:",
+                fontSize = 18.sp,
+                fontWeight = FontWeight.Bold
             )
             Text(
                 text = "☠️".repeat(livesRemaining) + "🪦️".repeat(maxLives - livesRemaining),
-                fontSize = 20.sp
+                fontSize = 18.sp
             )
-//            Text(
-//                text = "Incorrect guesses",
-//                fontSize = 20.sp
-//            )
-//            Text(
-//                text = "🪦".repeat(incorrectGuesses),
-//                fontSize = 20.sp
-//            )
         }
     }
 }
