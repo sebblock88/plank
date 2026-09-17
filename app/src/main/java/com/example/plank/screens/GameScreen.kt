@@ -32,7 +32,7 @@ import com.example.plank.components.SecretWord
 fun GameScreen() {
     var guessed by remember { mutableStateOf(setOf<Char>()) }
 
-    val secretWord = "flag".uppercase()
+    val secretWord = "treasure".uppercase()
     val win = secretWord.all { it in guessed }
     val maxLives = 5
     val incorrectGuess = guessed.count { it !in secretWord }

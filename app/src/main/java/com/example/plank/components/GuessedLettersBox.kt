@@ -32,7 +32,8 @@ fun GuessedLettersBox(guessed: Set<Char>) {
         Box() {
                 Text(
                     guessed.joinToString("  "),
-                    fontSize = 36.sp
+                    fontSize = 36.sp,
+                    lineHeight = 44.sp,
                 )
     }
 }
