@@ -18,9 +18,10 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 
 @Composable
-fun Homescreen() {
+fun Homescreen(navController: NavController) {
     Surface(modifier = Modifier.fillMaxSize()) {
         Column(verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally) {
@@ -41,7 +42,7 @@ fun Homescreen() {
 
             Spacer(modifier = Modifier.height(28.dp))
 
-            Button( onClick = {}) {
+            Button( onClick = {navController.navigate("gamescreen")}) {
                 Text(
                     text = "Play Game"
                 )

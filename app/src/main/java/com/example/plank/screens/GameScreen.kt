@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
@@ -19,10 +20,12 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringArrayResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.plank.R
 import com.example.plank.components.GuessBox
 import com.example.plank.components.GuessedLettersBox
 import com.example.plank.components.Lives
@@ -32,7 +35,8 @@ import com.example.plank.components.SecretWord
 fun GameScreen() {
     var guessed by remember { mutableStateOf(setOf<Char>()) }
 
-    val secretWord = "treasure".uppercase()
+    val wordList = stringArrayResource(R.array.game_words)
+    var secretWord by remember { mutableStateOf(wordList.random()) }
     val win = secretWord.all { it in guessed }
     val maxLives = 5
     val incorrectGuess = guessed.count { it !in secretWord }
@@ -41,11 +45,12 @@ fun GameScreen() {
 
     fun resetGame() {
         guessed = emptySet()
+        secretWord = wordList.random()
     }
 
     Box(modifier = Modifier.fillMaxSize()) {
         Column(
-            modifier = Modifier.fillMaxSize().padding(16.dp),
+            modifier = Modifier.fillMaxSize().padding(16.dp).statusBarsPadding(),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Lives(
