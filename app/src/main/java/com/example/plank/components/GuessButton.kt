@@ -25,9 +25,8 @@ import androidx.navigation.NavController
 import com.example.plank.R
 
 @Composable
-fun WoodenPlaySign(
-    navController: NavController,
-    destinationRoute: String,
+fun GuessButton(
+    onClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     var isPressed by remember { mutableStateOf(false) }
@@ -35,6 +34,7 @@ fun WoodenPlaySign(
         targetValue = if (isPressed) 0.92f else 1.0f,
         label = "buttonScale"
     )
+
     Box(
         modifier = modifier
             .width(200.dp)
@@ -47,19 +47,16 @@ fun WoodenPlaySign(
                         tryAwaitRelease()
                         isPressed = false
                     },
-                    onTap = {
-                        navController.navigate(destinationRoute)
-                    }
+                    onTap = { onClick() }
                 )
             },
-                contentAlignment = Alignment.Center
+        contentAlignment = Alignment.Center
     ) {
         Image(
-                painter = painterResource(id = R.drawable.play_button_2),
-            contentDescription = null,
+            painter = painterResource(id = R.drawable.guess_button),
+            contentDescription = "Guess",
             contentScale = ContentScale.FillBounds,
             modifier = Modifier.fillMaxSize()
         )
-
     }
 }

@@ -11,6 +11,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.coerceAtMost
 import androidx.compose.ui.unit.dp
@@ -27,6 +28,7 @@ fun SecretWord(secretWord: String, guessed: Set<Char>) {
             Text(
                 text,
                 textAlign = TextAlign.Center,
+                fontFamily = FontFamily.Serif,
                 autoSize = TextAutoSize.StepBased(
                     minFontSize = 20.sp, maxFontSize = 50.sp, stepSize = 2.sp),
                 modifier = Modifier.weight(1f, fill = false)

@@ -1,5 +1,6 @@
 package com.example.plank.screens
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -20,7 +21,10 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringArrayResource
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -49,6 +53,14 @@ fun GameScreen() {
     }
 
     Box(modifier = Modifier.fillMaxSize()) {
+
+        Image(
+            painter = painterResource(id = R.drawable.background_gamescreen),
+            contentDescription = "background",
+            modifier = Modifier.fillMaxSize(),
+            contentScale = ContentScale.Crop
+        )
+
         Column(
             modifier = Modifier.fillMaxSize().padding(16.dp).statusBarsPadding(),
             horizontalAlignment = Alignment.CenterHorizontally
@@ -66,13 +78,19 @@ fun GameScreen() {
             ) {
                 Text(
                     "Guess a letter to reveal the word",
-                    fontSize = 22.sp,
-                    fontWeight = FontWeight.Bold
+                    fontSize = 32.sp,
+                    fontWeight = FontWeight.Bold,
+                    fontFamily = FontFamily.Serif,
+                    textAlign = TextAlign.Center,
+                    modifier = Modifier
+                        .padding(horizontal = 24.dp)
                 )
                 Text(
                     "Every wrong guess costs 1 life! ☠️",
                     fontSize = 18.sp,
-                    color = Color.DarkGray
+                    color = Color.DarkGray,
+                    fontWeight = FontWeight.Bold,
+                    fontFamily = FontFamily.Serif
                 )
             }
 
@@ -80,11 +98,11 @@ fun GameScreen() {
 
             SecretWord(secretWord = secretWord, guessed = guessed)
 
-            Spacer(modifier = Modifier.height(44.dp))
+            Spacer(modifier = Modifier.height(36.dp))
 
             GuessBox(onLettersEntered = { char -> guessed = guessed + char })
 
-            Spacer(modifier = Modifier.height(44.dp))
+            Spacer(modifier = Modifier.height(20.dp))
 
             GuessedLettersBox(guessed = guessed, secretWord = secretWord)
 

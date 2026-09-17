@@ -1,20 +1,27 @@
 package com.example.plank.components
 
 import android.widget.Toast
+import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.LocalTextStyle
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
+import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.shadow
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -31,27 +38,54 @@ fun GuessBox(onLettersEntered: (Char) -> Unit) {
             if (input.length <= 1) {
                 guessedLetter = input.uppercase()
             }
-        }, modifier = Modifier.width(72.dp),
-        textStyle = LocalTextStyle.current.copy(textAlign = TextAlign.Center, fontSize = 36.sp, fontWeight = FontWeight.Bold),
-        singleLine = true
+        }, modifier = Modifier
+            .width(72.dp)
+            .shadow(
+            elevation = 6.dp,
+            shape = RoundedCornerShape(8.dp),
+            ambientColor = Color.Black,
+            spotColor = Color.Black)
+            .background(Color(0xFFFBF4E6), RoundedCornerShape(8.dp)),
+        textStyle = LocalTextStyle.current.copy(textAlign = TextAlign.Center, fontSize = 36.sp, fontWeight = FontWeight.Bold, fontFamily = FontFamily.Serif),
+        singleLine = true,
+        colors = TextFieldDefaults.colors(
+            unfocusedContainerColor = Color.Transparent,
+        )
+
+
     )
 
     Spacer(modifier = Modifier.height(20.dp))
 
-    Button( onClick = { if(guessedLetter.isNotEmpty()) {
-            val char = guessedLetter[0]
-            if(char.isLetter()) {
-                onLettersEntered(char)
-                guessedLetter = ""
-            } else {
-                Toast.makeText(context, "Letters only, matey!", Toast.LENGTH_LONG).show()
+    GuessButton(
+        onClick = {
+            if (guessedLetter.isNotEmpty()) {
+                val char = guessedLetter[0]
+                if (char.isLetter()) {
+                    onLettersEntered(char)
+                    guessedLetter = ""
+                } else {
+                    Toast.makeText(context, "Letters only, matey!", Toast.LENGTH_LONG).show()
+                }
             }
         }
-    } ) {
-            Text(
-                "Guess",
-                fontSize = 20.sp
-            )}
+    )
+
+//    Button( onClick = { if(guessedLetter.isNotEmpty()) {
+//            val char = guessedLetter[0]
+//            if(char.isLetter()) {
+//                onLettersEntered(char)
+//                guessedLetter = ""
+//            } else {
+//                Toast.makeText(context, "Letters only, matey!", Toast.LENGTH_LONG).show()
+//            }
+//        }
+//    } ) {
+//            Text(
+//                "Guess",
+//                fontSize = 20.sp
+//            )}
+
 }
 
 
