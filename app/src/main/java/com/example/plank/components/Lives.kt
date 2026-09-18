@@ -50,7 +50,7 @@ fun Lives(livesRemaining: Int, maxLives: Int) {
             )
 
             Text(
-                text = "❤️".repeat(livesRemaining) + "🖤".repeat(maxLives - livesRemaining),
+                text = "🫀".repeat(livesRemaining) + "☠️".repeat(maxLives - livesRemaining),
                 fontSize = 18.sp
             )
 //            Text(
