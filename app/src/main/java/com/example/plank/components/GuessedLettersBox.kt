@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
@@ -57,14 +58,14 @@ fun GuessedLettersBox(guessed: Set<Char>, secretWord: String) {
                     "$char ",
                     fontSize = 36.sp,
                     fontFamily = FontFamily.Serif,
-                    fontWeight = FontWeight.Bold,
+                    fontWeight = FontWeight.W800,
                     lineHeight = 44.sp,
-                    color = if (char in secretWord) Color(0xFF8BC34A) else Color(0xFFE57373) // Slightly brighter shades pop better on dark translucent backgrounds
+                    color = if (char in secretWord) Color(0xFF8BC34A) else Color(0xFFE57373)
                 )
             }
         }
     }
-    //    Row(
+//        Row(
 //        modifier = Modifier.fillMaxWidth(),
 //        horizontalArrangement = Arrangement.Center
 //    ) {

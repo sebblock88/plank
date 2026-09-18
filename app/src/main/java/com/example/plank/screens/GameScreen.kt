@@ -41,7 +41,7 @@ fun GameScreen(navController: NavHostController) {
     var guessed by remember { mutableStateOf(setOf<Char>()) }
 
     val wordList = stringArrayResource(R.array.game_words)
-    var secretWord by remember { mutableStateOf(wordList.random()) }
+    var secretWord by remember { mutableStateOf(wordList.random().uppercase()) }
     val win = secretWord.all { it in guessed }
     val maxLives = 5
     val incorrectGuess = guessed.count { it !in secretWord }
