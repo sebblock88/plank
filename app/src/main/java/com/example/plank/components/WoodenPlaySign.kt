@@ -38,7 +38,7 @@ fun WoodenPlaySign(
     Box(
         modifier = modifier
             .width(200.dp)
-            .height(80.dp)
+            .height(70.dp)
             .graphicsLayer(scaleX = scale, scaleY = scale)
             .pointerInput(Unit) {
                 detectTapGestures(
