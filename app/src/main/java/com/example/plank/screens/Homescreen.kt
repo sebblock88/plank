@@ -44,7 +44,7 @@ fun Homescreen(navController: NavController) {
             Image(
                 painter = painterResource(id = R.drawable.plank_logo),
                 contentDescription = "plank_logo",
-                modifier = Modifier.fillMaxWidth(0.95f).wrapContentHeight().padding(bottom = 16.dp),
+                modifier = Modifier.fillMaxWidth(1f).wrapContentHeight().padding(bottom = 16.dp),
                 contentScale = ContentScale.Fit
             )
 //            Text(
