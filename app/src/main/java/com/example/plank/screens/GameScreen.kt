@@ -29,6 +29,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
 import com.example.plank.R
 import com.example.plank.components.GuessBox
 import com.example.plank.components.GuessedLettersBox
@@ -36,7 +37,7 @@ import com.example.plank.components.Lives
 import com.example.plank.components.SecretWord
 
 @Composable
-fun GameScreen() {
+fun GameScreen(navController: NavHostController) {
     var guessed by remember { mutableStateOf(setOf<Char>()) }
 
     val wordList = stringArrayResource(R.array.game_words)
@@ -106,39 +107,53 @@ fun GameScreen() {
 
             GuessedLettersBox(guessed = guessed, secretWord = secretWord)
 
-            if (win || lose) {
-                AlertDialog(
-                    onDismissRequest = {},
-                    containerColor = Color(0xFF1E1E1E),
-                    title = {
-                        Text(text = if (win) "VICTORY! 🏴‍☠️" else "GAME OVER! 🪦️",
-                            fontSize = 24.sp,
-                            fontWeight = FontWeight.Bold,
-                            color = Color.White,
-                            textAlign = TextAlign.Center,
-                            modifier = Modifier.fillMaxWidth())
-                },
-                    text = {
-                        Text(
-                            text = if (win)
-                                "Ahoy! Back to deck shipmate!"
-                            else
-                                "Walk the plank!\n\nThe word was: $secretWord",
-                            fontSize = 16.sp,
-                            color = Color.LightGray,
-                            textAlign = TextAlign.Center,
-                            modifier = Modifier.fillMaxWidth()
-                        )
-                    },
-                    confirmButton = {
-                    Button(onClick = {resetGame()},
-                        modifier = Modifier.fillMaxWidth(),
-                        colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF2196F3))) {
-                        Text("Play again",
-                            fontWeight = FontWeight.Bold)
-                    }
-                })
+//            if (win || lose) {
+//                AlertDialog(
+//                    onDismissRequest = {},
+//                    containerColor = Color(0xFF1E1E1E),
+//                    title = {
+//                        Text(text = if (win) "VICTORY! 🏴‍☠️" else "GAME OVER! 🪦️",
+//                            fontSize = 24.sp,
+//                            fontWeight = FontWeight.Bold,
+//                            color = Color.White,
+//                            textAlign = TextAlign.Center,
+//                            modifier = Modifier.fillMaxWidth())
+//                },
+//                    text = {
+//                        Text(
+//                            text = if (win)
+//                                "Ahoy! Back to deck shipmate!"
+//                            else
+//                                "Walk the plank!\n\nThe word was: $secretWord",
+//                            fontSize = 16.sp,
+//                            color = Color.LightGray,
+//                            textAlign = TextAlign.Center,
+//                            modifier = Modifier.fillMaxWidth()
+//                        )
+//                    },
+//                    confirmButton = {
+//                    Button(onClick = {resetGame()},
+//                        modifier = Modifier.fillMaxWidth(),
+//                        colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF2196F3))) {
+//                        Text("Play again",
+//                            fontWeight = FontWeight.Bold)
+//                    }
+//                })
+//            }
+
+            if (win) {
+                navController.navigate("winscreen/$secretWord") {
+                    popUpTo("gamescreen") { inclusive = true }
+                }
             }
+
+            if (lose) {
+                navController.navigate("losescreen/$secretWord") {
+                    popUpTo("gamescreen") { inclusive = true }
+                }
+            }
+
+
         }
     }
 }
